@@ -18,7 +18,7 @@ class CartManager
 
     public function deleteSession()
     {
-        request()->session()->forget($this->sessionName);
+        return request()->session()->forget($this->sessionName);
     }
 
     public function removeProduct($productId)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Paypal;
 use App\CartManager;
+use App\Order;
 
 class PaypalController extends Controller
 {
@@ -20,14 +21,16 @@ class PaypalController extends Controller
         return redirect()->away($link);
     }
 
-    public function checkout(Request $request, $status)
+    public function checkout(Request $request, CartManager $cart, $status)
     {
         if($status == "success") {
             $response = $this->paypal->checkout($request);
             
             if(!is_null($response)) {
-                session()->flash('message','Compra exitosa');
-                return redirect()->route('home');
+                $response->shopping_cart_id = $cart->getCart()->id;
+                Order::createFromResponse($response);
+                session()->flash('message','Compra exitosa, hemos enviado un correo con un resument de tu compra');
+                return redirect()->route('welcome');
             }
         }
     }

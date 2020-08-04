@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Cashier\Cashier;
 use App\CartManager;
-use App\Paypal;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,10 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->bind('Cart', function() {
-        //     return new CartManager();
-        // });
-
+        $this->app->bind(CartManager::class, function() {
+            return new CartManager();
+        });
+        
         Cashier::ignoreMigrations();
     }
 
