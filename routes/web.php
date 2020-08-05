@@ -15,5 +15,8 @@ Route::livewire('/crear', 'product.create')->name('products.create')->middleware
 Route::livewire('/checkout', 'checkout')->name('checkout');
 
 // Paypal
-Route::get('/paypal/payment', 'PaypalController@paymentRequest')->name('paypal.payment');
-Route::get('/paypal/checkout/{status}', 'PaypalController@checkout')->name('paypal.checkout');
+Route::get('/paypal/payment', 'PaymentController@paypalPaymentRequest')->name('paypal.payment');
+Route::get('/paypal/checkout/{status}', 'PaymentController@paypalCheckout')->name('paypal.checkout');
+
+// Stripe
+Route::post('/stripe/checkout', 'PaymentController@stripeCheckout')->name('stripe.checkout');

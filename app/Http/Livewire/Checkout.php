@@ -8,7 +8,7 @@ use App\Product;
 
 class Checkout extends Component
 {
-    public $products;
+    public $products, $stripeKey;
     private $cart;
 
     protected $listeners = ['addToCart'];
@@ -17,6 +17,7 @@ class Checkout extends Component
     {
         $this->cart = $cart->getCart();
         $this->products = $this->cart->products;
+        $this->stripeKey = config('services.stripe.key');
     }
 
     public function deleteProduct($productId)

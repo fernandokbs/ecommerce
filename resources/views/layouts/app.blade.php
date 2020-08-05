@@ -92,6 +92,7 @@
 
     @livewireScripts
     <script src="https://use.fontawesome.com/293dbc87e8.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.8.0/dist/alpine.js" defer></script>
+    @stack('scripts')
 </body>
 </html>
