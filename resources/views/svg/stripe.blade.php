@@ -1,13 +1,14 @@
 <form action="{{ route('stripe.checkout') }}" method="post" id="payment-form">
   @csrf
   <div class="form-row">
-    <label for="card-element">
-      Credit or debit card
-    </label>
-    <div id="card-element">
-      <!-- A Stripe Element will be inserted here. -->
+    <div>
+      <input id="email-element" type="email" class="form-control mb-1" placeholder="janedoe@gmail.com" required name="email">
     </div>
 
+    <div id="card-element" require>
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+    
     <!-- Used to display form errors. -->
     <div id="card-errors" role="alert"></div>
   </div>

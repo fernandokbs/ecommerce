@@ -38,14 +38,13 @@ class PaymentController extends Controller
         // 4242 4242 4242 4242
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $charge = Charge::create([
-            'amount' => $cart->getCart()->amount(),
+        Charge::create([
+            'amount' => ($cart->getCart()->amount()) * 100,
             'currency' => 'usd' ,
             'source' => $request->stripeToken
         ]);
 
-        Order::create(['shopping_cart_id' => $cart->getCart()->id]);
-
+        Order::create(['shopping_cart_id' => $cart->getCart()->id, 'email' => $request->email]);
         session()->flash('message','Compra exitosa, hemos enviado un correo con un resument de tu compra');
         return redirect()->route('welcome');
     }

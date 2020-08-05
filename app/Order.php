@@ -34,9 +34,9 @@ class Order extends Model
 
     protected static function booted()
     {
-        static::created(function ($order) {
+        static::saving(function ($order) {
             (app(CartManager::class))->deleteSession();
-            // Mail::to("fernando@gmail.com")->send(new ConfirmationShopping($order));
+            Mail::to($order->email)->send(new ConfirmationShopping($order));
         });
     }
 }
