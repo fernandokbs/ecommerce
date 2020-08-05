@@ -16,6 +16,16 @@ class CartManager
         $cart->products()->attach($product->id);
     }
 
+    public function getId()
+    {
+        return $this->findSession();
+    }
+
+    public function getamount()
+    {
+        return ($this->findOrCreate($this->findSession()))->amount();
+    }
+
     public function deleteSession()
     {
         return request()->session()->forget($this->sessionName);

@@ -15,8 +15,7 @@ class PaymentController extends Controller
 {
     public function paypalPaymentRequest(Request $request, CartManager $cart, Paypal $paypal)
     {
-        $link = $paypal->paymentRequest($cart->getCart()->amount());
-        return redirect()->away($link);
+        return redirect()->away($paypal->paymentRequest($cart->getamount()));
     }
 
     public function paypalCheckout(Request $request, CartManager $cart, Paypal $paypal, $status)
@@ -25,7 +24,7 @@ class PaymentController extends Controller
             $response = $paypal->checkout($request);
             
             if(!is_null($response)) {
-                $response->shopping_cart_id = $cart->getCart()->id;
+                $response->shopping_cart_id = $cart->getId();
                 Order::createFromResponse($response);
                 session()->flash('message','Compra exitosa, hemos enviado un correo con un resument de tu compra');
                 return redirect()->route('welcome');

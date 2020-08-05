@@ -12,7 +12,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::livewire('/productos/{product}', 'product.show')->name('products.show');
 Route::livewire('/crear', 'product.create')->name('products.create')->middleware('admin');
-Route::livewire('/checkout', 'checkout')->name('checkout');
+Route::livewire('/checkout', 'checkout')->name('checkout')->middleware('check');
 
 // Paypal
 Route::get('/paypal/payment', 'PaymentController@paypalPaymentRequest')->name('paypal.payment');
