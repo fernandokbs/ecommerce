@@ -1,4 +1,14 @@
 <div>
+    @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible" role="alert"> 
+            {{ session('message') }}
+            
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    
     <div class="container">
         <h2 class="text-center mb-4 mt-3">Resumen</h2>
 
@@ -17,11 +27,13 @@
 
                             <tbody>
                                 @foreach($products as $product)
-                                    <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td><button class="btn btn-danger">Eliminar</button></td>
-                                    </tr>
+                                    @if($product->pivot)
+                                        <tr>
+                                            <td>{{ $product->id }}</td>
+                                            <td>{{ $product->name }}</td>
+                                            <td><button class="btn btn-danger" wire:click="deleteProduct('{{ $product->pivot->id }}')">Eliminar</button></td>
+                                        </tr>
+                                    @endif
                                 @endforeach
 
                                 <tr>

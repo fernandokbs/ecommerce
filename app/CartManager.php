@@ -31,9 +31,9 @@ class CartManager
         return request()->session()->forget($this->sessionName);
     }
 
-    public function removeProduct($productId)
+    public function removeProduct($pivotId)
     {
-        $product = $this->getProduct($productId);
+        return $this->getCart()->products()->wherePivot('id', $pivotId)->detach();
     }
 
     public function getCart()
@@ -43,11 +43,16 @@ class CartManager
 
     private function findOrCreate($cartId = null)
     {
-        $cart = is_null($cartId) ? ShoppingCart::create() : ShoppingCart::find($cartId);
+        $cart = null;
+        if(is_null($cartId)) 
+            $cart = ShoppingCart::create();
+        else {
+            $cart = ShoppingCart::find($cartId);
+            if(is_null($cart))
+                $cart = ShoppingCart::create();
+        }
 
-        if(!request()->session()->has($this->sessionName))
-            request()->session()->put($this->sessionName, $cart->id); 
-        
+        request()->session()->put($this->sessionName, $cart->id); 
         return $cart;
     }
 

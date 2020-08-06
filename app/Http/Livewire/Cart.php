@@ -16,10 +16,7 @@ class Cart extends Component
         $this->cart = $cart->getCart();
     }
 
-    public function addToCart()
-    {
-        
-    }
+    public function addToCart(){}
 
     public function render()
     {

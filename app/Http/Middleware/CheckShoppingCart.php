@@ -18,7 +18,7 @@ class CheckShoppingCart
     {
         $cart = app(CartManager::class);
 
-        if($cart->getCart()->products->count() == 0)
+        if(is_null($cart->getCart()) || $cart->getCart()->products->count() == 0)
             return redirect('/');
 
         return $next($request);
