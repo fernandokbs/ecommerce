@@ -8,12 +8,17 @@ use App\ShoppingCart;
 class CartManager
 {
     private $sessionName = "shopping_card_id";
-    
+    private $cart;
+
+    public function __construct()
+    {
+        $this->cart = $this->findOrCreate($this->findSession());
+    }
+
     public function addToCart($productId)
     {
-        $cart = $this->findOrCreate($this->findSession());
         $product = $this->getProduct($productId);
-        $cart->products()->attach($product->id);
+        $this->cart->products()->attach($product->id);
     }
 
     public function getId()
@@ -23,7 +28,7 @@ class CartManager
 
     public function getamount()
     {
-        return ($this->findOrCreate($this->findSession()))->amount();
+        return $this->cart->amount();
     }
 
     public function deleteSession()
@@ -33,12 +38,12 @@ class CartManager
 
     public function removeProduct($pivotId)
     {
-        return $this->getCart()->products()->wherePivot('id', $pivotId)->detach();
+        return $this->cart->products()->wherePivot('id', $pivotId)->detach();
     }
 
     public function getCart()
     {
-        return $this->findOrCreate($this->findSession());
+        return $this->cart;
     }
 
     private function findOrCreate($cartId = null)

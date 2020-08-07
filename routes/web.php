@@ -20,3 +20,7 @@ Route::get('/paypal/checkout/{status}', 'PaymentController@paypalCheckout')->nam
 
 // Stripe
 Route::post('/stripe/checkout', 'PaymentController@stripeCheckout')->name('stripe.checkout');
+
+// Complete
+Route::get('/order/complete/{order}', 'CompleteOrderController@completeForm')->name('order.complete');
+Route::post('/order/{order}', 'CompleteOrderController@completeOrder')->name('complete');

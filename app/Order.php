@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmationShopping;
 use App\CartManager;
+use Illuminate\Support\Facades\URL;
 
 class Order extends Model
 {
@@ -15,6 +16,11 @@ class Order extends Model
     public function shoppingCart()
     {
         return $this->belongsTo(ShoppingCart::class);
+    }
+
+    public function isFromStripe()
+    {
+        return $this->name == null ? true : false;
     }
 
     public static function createFromResponse($response)
@@ -36,7 +42,16 @@ class Order extends Model
     {
         static::saving(function ($order) {
             (app(CartManager::class))->deleteSession();
-            Mail::to($order->email)->send(new ConfirmationShopping($order));
+
+            if(!$order->isFromStripe())
+                Mail::to($order->email)->send(new ConfirmationShopping($order));
+        });
+
+        static::created(function($order) {
+            if($order->isFromStripe()) {
+                $url = URL::signedRoute('order.complete', ['order' => $order->id]);
+                Mail::to($order->email)->send(new ConfirmationShopping($order, $url));
+            }
         });
     }
 }
