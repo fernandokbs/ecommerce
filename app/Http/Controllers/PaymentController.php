@@ -7,8 +7,8 @@ use App\Paypal;
 use App\CartManager;
 use App\Order;
 
-use Stripe\Stripe;
 use Stripe\PaymentIntent;
+use Stripe\Stripe;
 use Stripe\Charge;
 
 class PaymentController extends Controller
