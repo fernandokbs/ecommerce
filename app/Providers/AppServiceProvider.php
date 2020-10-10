@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Laravel\Cashier\Cashier;
 use App\CartManager;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,8 +17,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CartManager::class, function() {
             return new CartManager();
         });
-        
-        Cashier::ignoreMigrations();
     }
 
     /**
