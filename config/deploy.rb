@@ -12,12 +12,11 @@ set :keep_releases, 2
 
 set :laravel_env_file, '/var/www/secrets/.env'
 
-append :linked_dirs, 
-    'storage/app',
-    'storage/framework/cache',
-    'storage/framework/sessions',
-    'storage/framework/views',
-    'storage/logs'
+append  :linked_dirs, 
+        'storage/app',
+        'storage/framework/cache',
+        'storage/framework/sessions',
+        'storage/logs'
 
 namespace :composer do
     desc "Install composer"
@@ -42,6 +41,12 @@ namespace :laravel do
         dotenv = fetch(:laravel_env_file)
         on roles(:laravel) do
             execute :cp, "#{dotenv} #{release_path}/.env"
+        end
+    end
+
+    task :clean_views do
+        on roles(:laravel) do
+            execute "cd #{release_path} php artisan view:clear"
         end
     end
 end
