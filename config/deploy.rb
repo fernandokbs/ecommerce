@@ -25,8 +25,7 @@ end
 namespace :laravel do
     task :fix_permission do
         on roles(:laravel) do
-            execute :sudo, "chmod -R ug+rwx #{shared_path}/storage/ #{release_path}/bootstrap/cache/"
-            execute :sudo, "chgrp -R www-data #{shared_path}/storage/ #{release_path}/bootstrap/cache/"
+            execute :sudo, "chmod -R 775 #{shared_path}/storage/ #{release_path}/bootstrap/cache/"
         end
     end
     task :configure_dot_env do
@@ -36,6 +35,7 @@ namespace :laravel do
         end
     end
 end
+
 namespace :deploy do
     after :updated, "composer:install"
     after :updated, "laravel:fix_permission"
