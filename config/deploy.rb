@@ -5,11 +5,8 @@ set :application, "Laravel_capistrano"
 set :repo_url, "git@github.com:fernandokbs/ecommerce.git"
 
 set :branch, "Laravel-8"
-
 set :deploy_to, '/var/www/laravel-capistrano'
-
 set :laravel_dotenv_file, '/var/www/secrets/.env'
-
 set :keep_releases, 5
 
 namespace :composer do
@@ -25,6 +22,7 @@ end
 namespace :laravel do
     task :fix_permission do
         on roles(:laravel) do
+            execute :sudo, "chown -R $USER:www-data #{release_path}/storage/ #{release_path}/bootstrap/cache/"
             execute :sudo, "chmod -R 775 #{release_path}/storage/ #{release_path}/bootstrap/cache/"
         end
     end

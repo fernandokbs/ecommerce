@@ -69,3 +69,90 @@
  DEBUG [9ea89087] 	cannot access '/var/www/laravel-capistrano/shared/storage/'
  DEBUG [9ea89087] 	: No such file or directory
  DEBUG [9ea89087] 	
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-11-24 18:27:19 -0600 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [9c974e2b] Running /usr/bin/env mkdir -p /tmp as vagrant@172.16.0.10
+ DEBUG [9c974e2b] Command: /usr/bin/env mkdir -p /tmp
+  INFO [9c974e2b] Finished in 0.420 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-Laravel_capistrano-production-fernando.sh 0.0%
+  INFO Uploading /tmp/git-ssh-Laravel_capistrano-production-fernando.sh 100.0%
+  INFO [000b1b49] Running /usr/bin/env chmod 700 /tmp/git-ssh-Laravel_capistrano-production-fernando.sh as vagrant@172.16.0.10
+ DEBUG [000b1b49] Command: /usr/bin/env chmod 700 /tmp/git-ssh-Laravel_capistrano-production-fernando.sh
+  INFO [000b1b49] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [9e5aed10] Running /usr/bin/env git ls-remote git@github.com:fernandokbs/ecommerce.git HEAD as vagrant@172.16.0.10
+ DEBUG [9e5aed10] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Laravel_capistrano-production-fernando.sh" ; /usr/bin/env git ls-remote git@github.com:fernandokbs/ecommerce.git HEAD )
+ DEBUG [9e5aed10] 	ae7d5ae2b4b6a07d1ae519ce7fd3b31e9dff8dcc	HEAD
+  INFO [9e5aed10] Finished in 1.008 seconds with exit status 0 (successful).
+  INFO [d8196d0a] Running /usr/bin/env mkdir -p /var/www/laravel-capistrano/shared /var/www/laravel-capistrano/releases as vagrant@172.16.0.10
+ DEBUG [d8196d0a] Command: /usr/bin/env mkdir -p /var/www/laravel-capistrano/shared /var/www/laravel-capistrano/releases
+  INFO [d8196d0a] Finished in 0.015 seconds with exit status 0 (successful).
+ DEBUG [097f05f2] Running [ -f /var/www/laravel-capistrano/current/REVISION ] as vagrant@172.16.0.10
+ DEBUG [097f05f2] Command: [ -f /var/www/laravel-capistrano/current/REVISION ]
+ DEBUG [097f05f2] Finished in 0.052 seconds with exit status 1 (failed).
+ DEBUG [354798a7] Running [ -f /var/www/laravel-capistrano/repo/HEAD ] as vagrant@172.16.0.10
+ DEBUG [354798a7] Command: [ -f /var/www/laravel-capistrano/repo/HEAD ]
+ DEBUG [354798a7] Finished in 0.013 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /var/www/laravel-capistrano/repo
+ DEBUG [57ea8dc4] Running if test ! -d /var/www/laravel-capistrano/repo; then echo "Directory does not exist '/var/www/laravel-capistrano/repo'" 1>&2; false; fi as vagrant@172.16.0.10
+ DEBUG [57ea8dc4] Command: if test ! -d /var/www/laravel-capistrano/repo; then echo "Directory does not exist '/var/www/laravel-capistrano/repo'" 1>&2; false; fi
+ DEBUG [57ea8dc4] Finished in 0.050 seconds with exit status 0 (successful).
+  INFO [3c1bfa3a] Running /usr/bin/env git remote set-url origin git@github.com:fernandokbs/ecommerce.git as vagrant@172.16.0.10
+ DEBUG [3c1bfa3a] Command: cd /var/www/laravel-capistrano/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Laravel_capistrano-production-fernando.sh" ; /usr/bin/env git remote set-url origin git@github.com:fernandokbs/ecommerce.git )
+  INFO [3c1bfa3a] Finished in 0.021 seconds with exit status 0 (successful).
+  INFO [b75867cd] Running /usr/bin/env git remote update --prune as vagrant@172.16.0.10
+ DEBUG [b75867cd] Command: cd /var/www/laravel-capistrano/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Laravel_capistrano-production-fernando.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [b75867cd] 	Fetching origin
+ DEBUG [b75867cd] 	From github.com:fernandokbs/ecommerce
+ DEBUG [b75867cd] 	   3d34644..ae7d5ae  Laravel-8  -> Laravel-8
+  INFO [b75867cd] Finished in 1.113 seconds with exit status 0 (successful).
+ DEBUG [e3cd9cc9] Running if test ! -d /var/www/laravel-capistrano/repo; then echo "Directory does not exist '/var/www/laravel-capistrano/repo'" 1>&2; false; fi as vagrant@172.16.0.10
+ DEBUG [e3cd9cc9] Command: if test ! -d /var/www/laravel-capistrano/repo; then echo "Directory does not exist '/var/www/laravel-capistrano/repo'" 1>&2; false; fi
+ DEBUG [e3cd9cc9] Finished in 0.009 seconds with exit status 0 (successful).
+  INFO [3e07576d] Running /usr/bin/env mkdir -p /var/www/laravel-capistrano/releases/20201125002721 as vagrant@172.16.0.10
+ DEBUG [3e07576d] Command: cd /var/www/laravel-capistrano/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Laravel_capistrano-production-fernando.sh" ; /usr/bin/env mkdir -p /var/www/laravel-capistrano/releases/20201125002721 )
+  INFO [3e07576d] Finished in 0.051 seconds with exit status 0 (successful).
+  INFO [0e82dcc8] Running /usr/bin/env git archive Laravel-8 | /usr/bin/env tar -x -f - -C /var/www/laravel-capistrano/releases/20201125002721 as vagrant@172.16.0.10
+ DEBUG [0e82dcc8] Command: cd /var/www/laravel-capistrano/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Laravel_capistrano-production-fernando.sh" ; /usr/bin/env git archive Laravel-8 | /usr/bin/env tar -x -f - -C /var/www/laravel-capistrano/releases/20201125002721 )
+  INFO [0e82dcc8] Finished in 0.053 seconds with exit status 0 (successful).
+ DEBUG [b9cab2be] Running if test ! -d /var/www/laravel-capistrano/repo; then echo "Directory does not exist '/var/www/laravel-capistrano/repo'" 1>&2; false; fi as vagrant@172.16.0.10
+ DEBUG [b9cab2be] Command: if test ! -d /var/www/laravel-capistrano/repo; then echo "Directory does not exist '/var/www/laravel-capistrano/repo'" 1>&2; false; fi
+ DEBUG [b9cab2be] Finished in 0.005 seconds with exit status 0 (successful).
+ DEBUG [5c0aacd7] Running /usr/bin/env git rev-list --max-count=1 Laravel-8 as vagrant@172.16.0.10
+ DEBUG [5c0aacd7] Command: cd /var/www/laravel-capistrano/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-Laravel_capistrano-production-fernando.sh" ; /usr/bin/env git rev-list --max-count=1 Laravel-8 )
+ DEBUG [5c0aacd7] 	ae7d5ae2b4b6a07d1ae519ce7fd3b31e9dff8dcc
+ DEBUG [5c0aacd7] Finished in 0.007 seconds with exit status 0 (successful).
+ DEBUG [e25fb780] Running if test ! -d /var/www/laravel-capistrano/releases/20201125002721; then echo "Directory does not exist '/var/www/laravel-capistrano/releases/20201125002721'" 1>&2; false; fi as vagrant@172.16.0.10
+ DEBUG [e25fb780] Command: if test ! -d /var/www/laravel-capistrano/releases/20201125002721; then echo "Directory does not exist '/var/www/laravel-capistrano/releases/20201125002721'" 1>&2; false; fi
+ DEBUG [e25fb780] Finished in 0.003 seconds with exit status 0 (successful).
+  INFO [a15921b0] Running /usr/bin/env echo "ae7d5ae2b4b6a07d1ae519ce7fd3b31e9dff8dcc" > REVISION as vagrant@172.16.0.10
+ DEBUG [a15921b0] Command: cd /var/www/laravel-capistrano/releases/20201125002721 && /usr/bin/env echo "ae7d5ae2b4b6a07d1ae519ce7fd3b31e9dff8dcc" > REVISION
+  INFO [a15921b0] Finished in 0.005 seconds with exit status 0 (successful).
+ DEBUG [f10eabc9] Running if test ! -d /var/www/laravel-capistrano/releases/20201125002721; then echo "Directory does not exist '/var/www/laravel-capistrano/releases/20201125002721'" 1>&2; false; fi as vagrant@172.16.0.10
+ DEBUG [f10eabc9] Command: if test ! -d /var/www/laravel-capistrano/releases/20201125002721; then echo "Directory does not exist '/var/www/laravel-capistrano/releases/20201125002721'" 1>&2; false; fi
+ DEBUG [f10eabc9] Finished in 0.045 seconds with exit status 0 (successful).
+  INFO [4d587aca] Running /usr/bin/env composer install --no-dev --quiet --prefer-dist --optimize-autoloader as vagrant@172.16.0.10
+ DEBUG [4d587aca] Command: cd /var/www/laravel-capistrano/releases/20201125002721 && /usr/bin/env composer install --no-dev --quiet --prefer-dist --optimize-autoloader
+  INFO [4d587aca] Finished in 17.586 seconds with exit status 0 (successful).
+  INFO [9f708719] Running /usr/bin/env sudo chmod -R 775 /var/www/laravel-capistrano/releases/20201125002721/storage/ /var/www/laravel-capistrano/releases/20201125002721/bootstrap/cache/ as vagrant@172.16.0.10
+ DEBUG [9f708719] Command: /usr/bin/env sudo chmod -R 775 /var/www/laravel-capistrano/releases/20201125002721/storage/ /var/www/laravel-capistrano/releases/20201125002721/bootstrap/cache/
+  INFO [9f708719] Finished in 0.027 seconds with exit status 0 (successful).
+  INFO [b74233ff] Running /usr/bin/env cp /var/www/secrets/.env /var/www/laravel-capistrano/releases/20201125002721/.env as vagrant@172.16.0.10
+ DEBUG [b74233ff] Command: /usr/bin/env cp /var/www/secrets/.env /var/www/laravel-capistrano/releases/20201125002721/.env
+  INFO [b74233ff] Finished in 0.055 seconds with exit status 0 (successful).
+  INFO [4f41fac7] Running /usr/bin/env ln -s /var/www/laravel-capistrano/releases/20201125002721 /var/www/laravel-capistrano/releases/current as vagrant@172.16.0.10
+ DEBUG [4f41fac7] Command: /usr/bin/env ln -s /var/www/laravel-capistrano/releases/20201125002721 /var/www/laravel-capistrano/releases/current
+  INFO [4f41fac7] Finished in 0.010 seconds with exit status 0 (successful).
+  INFO [7a2212bb] Running /usr/bin/env mv /var/www/laravel-capistrano/releases/current /var/www/laravel-capistrano as vagrant@172.16.0.10
+ DEBUG [7a2212bb] Command: /usr/bin/env mv /var/www/laravel-capistrano/releases/current /var/www/laravel-capistrano
+  INFO [7a2212bb] Finished in 0.011 seconds with exit status 0 (successful).
+ DEBUG [726b2fe8] Running /usr/bin/env ls -x /var/www/laravel-capistrano/releases as vagrant@172.16.0.10
+ DEBUG [726b2fe8] Command: /usr/bin/env ls -x /var/www/laravel-capistrano/releases
+ DEBUG [726b2fe8] 	20201125002056	20201125002451	20201125002721
+ DEBUG [726b2fe8] Finished in 0.059 seconds with exit status 0 (successful).
+ DEBUG [efca67d2] Running if test ! -d /var/www/laravel-capistrano/releases; then echo "Directory does not exist '/var/www/laravel-capistrano/releases'" 1>&2; false; fi as vagrant@172.16.0.10
+ DEBUG [efca67d2] Command: if test ! -d /var/www/laravel-capistrano/releases; then echo "Directory does not exist '/var/www/laravel-capistrano/releases'" 1>&2; false; fi
+ DEBUG [efca67d2] Finished in 0.009 seconds with exit status 0 (successful).
+  INFO [5a504e53] Running /usr/bin/env echo "Branch Laravel-8 (at ae7d5ae2b4b6a07d1ae519ce7fd3b31e9dff8dcc) deployed as release 20201125002721 by fernando" >> /var/www/laravel-capistrano/revisions.log as vagrant@172.16.0.10
+ DEBUG [5a504e53] Command: cd /var/www/laravel-capistrano/releases && /usr/bin/env echo "Branch Laravel-8 (at ae7d5ae2b4b6a07d1ae519ce7fd3b31e9dff8dcc) deployed as release 20201125002721 by fernando" >> /var/www/laravel-capistrano/revisions.log
+  INFO [5a504e53] Finished in 0.050 seconds with exit status 0 (successful).
