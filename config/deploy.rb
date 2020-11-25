@@ -12,13 +12,6 @@ set :laravel_dotenv_file, '/var/www/secrets/.env'
 
 set :keep_releases, 5
 
-append  :linked_dirs, 
-        'storage/app',
-        'storage/framework/cache',
-        'storage/framework/sessions',
-        'storage/framework/views',
-        'storage/logs'
-
 namespace :composer do
     desc "Running Composer Install"
     task :install do
